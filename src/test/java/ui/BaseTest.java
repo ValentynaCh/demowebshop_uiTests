@@ -1,12 +1,14 @@
 package ui;
 
-import ui.core.DriverManager;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import ui.core.DriverManager;
 import ui.utils.ConfigReader;
 
+
 public class BaseTest {
+    protected static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
     protected WebDriver driver;
 
 
@@ -15,11 +17,14 @@ public class BaseTest {
         ConfigReader configReader = ConfigReader.getInstance();
         driver = new DriverManager().createDriver(configReader.getBrowserName());
         driver.get(configReader.getBaseUrl());
-    }
+        driverThreadLocal.set(driver);
 
+    }
 
     @AfterTest(alwaysRun = true)
     public void tearDown() {
-        driver.quit();
+        driverThreadLocal.get().quit();
+        driverThreadLocal.remove();
     }
+
 }

@@ -9,7 +9,7 @@ import java.util.Properties;
 
 public class ConfigReader {
     private Properties properties;
-    private static ConfigReader configReader;
+    public static ConfigReader configReader;
     private static final String FILE_NAME = "app.properties";
     private static final Path RESOURCES_PATH = Paths.get("src", "main", "resources");
 
