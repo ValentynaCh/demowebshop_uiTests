@@ -9,9 +9,7 @@ import ui.utils.ConfigReader;
 
 public class BaseTest {
     protected static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
-    protected WebDriver driver;
-
-
+    public static WebDriver driver;
     @BeforeTest(alwaysRun = true)
     public void setUp() {
         ConfigReader configReader = ConfigReader.getInstance();
@@ -20,7 +18,6 @@ public class BaseTest {
         driverThreadLocal.set(driver);
 
     }
-
     @AfterTest(alwaysRun = true)
     public void tearDown() {
         driverThreadLocal.get().quit();

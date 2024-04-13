@@ -22,14 +22,12 @@ public class ConfigReader {
             throw new RuntimeException(String.format("error while reading a %s file.", FILE_NAME));
         }
     }
-
     public static ConfigReader getInstance() {
         if (configReader == null) {
             configReader = new ConfigReader();
         }
         return configReader;
     }
-
     public String getBaseUrl() {
         String baseUrl = properties.getProperty("base.url");
         if (baseUrl != null) {
@@ -38,7 +36,6 @@ public class ConfigReader {
             throw new RuntimeException(String.format("base_Url not specified in %s file.", FILE_NAME));
         }
     }
-
     public String getBrowserName() {
         String browserName = properties.getProperty("browser.name");
         if (browserName != null) {
