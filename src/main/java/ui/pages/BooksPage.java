@@ -3,11 +3,12 @@ package ui.pages;
 import org.openqa.selenium.WebDriver;
 
 public class BooksPage extends BasePage {
-    public HeaderSection header;
+    //create locator as its in header class
+
 
     public BooksPage(WebDriver webDriver) {
         super(webDriver);
-        header = new HeaderSection(webDriver);
+
     }
 
 
