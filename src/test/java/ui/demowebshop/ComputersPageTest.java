@@ -1,4 +1,5 @@
 package ui.demowebshop;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ui.BaseTest;

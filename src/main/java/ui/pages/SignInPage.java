@@ -3,12 +3,13 @@ package ui.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage {
+public class SignInPage extends BasePage {
     private final String emailFieldXpath = "//input[@id = 'Email']";
     private final String passwordFieldXpath = "//input[@id = 'Password']";
     private final String loginButtonXpath = "//div[@class = 'buttons'] //input[@type = 'submit']";
+    private final String errorLoginMessageXpath = "//div[@class = 'validation-summary-errors']";
 
-    public LoginPage(WebDriver driver) {
+    public SignInPage(WebDriver driver) {
         super(driver);
     }
 
@@ -24,5 +25,10 @@ public class LoginPage extends BasePage {
 
     public void clickLoginButton() {
         driver.findElement(By.xpath(loginButtonXpath)).click();
+    }
+
+
+    public String getErrorLoginMessage() {
+        return driver.findElement(By.xpath(errorLoginMessageXpath)).getText();
     }
 }
