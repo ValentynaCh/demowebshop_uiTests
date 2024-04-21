@@ -1,15 +1,22 @@
 package ui.demowebshop;
 
+import lombok.SneakyThrows;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ui.BaseTest;
-import ui.enums.HeaderMenu;
-import ui.pages.*;
+import ui.enums.HeaderMenuPageTitle;
+import ui.pages.ComputersPage;
+import ui.pages.header.MainMenu;
 
 public class ComputersPageTest extends BaseTest {
-    @Test(description = "This test verifies pages title")
-    public void verifyTitleTest() {
-        HeaderSection headerSection = new HeaderSection(driver);
-        Assert.assertEquals(headerSection.clickComputers(), HeaderMenu.COMPUTERS.getHeaderName(),String.format("Title of the %s page is not correct", HeaderMenu.COMPUTERS.getHeaderName()));
+
+    @SneakyThrows
+    @Test(description = "This test verifies page title")
+    public void verifyPageTitleTest() {
+        MainMenu mainMenu = new MainMenu(driver);
+        ComputersPage computersPage = mainMenu.clickOnMenuItemByName("computers", ComputersPage.class);
+        Assert.assertEquals(computersPage.getPageTitleText(), HeaderMenuPageTitle.COMPUTERS.getItemTagTextName(),
+                String.format("Title of the {%s} page is not correct", HeaderMenuPageTitle.COMPUTERS.getItemTagTextName()));
+
     }
 }

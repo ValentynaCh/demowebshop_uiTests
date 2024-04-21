@@ -9,9 +9,10 @@ public class SignInPage extends BasePage {
     private final String loginButtonXpath = "//div[@class = 'buttons'] //input[@type = 'submit']";
     private final String errorLoginMessageXpath = "//div[@class = 'validation-summary-errors']";
 
-    public SignInPage(WebDriver driver) {
-        super(driver);
+    public SignInPage(WebDriver webDriver) {
+        super(webDriver);
     }
+
 
     public void setEmail(String email) {
         System.out.println(String.format("Set %s email", email));
@@ -23,12 +24,14 @@ public class SignInPage extends BasePage {
         driver.findElement(By.xpath(passwordFieldXpath)).sendKeys(password);
     }
 
-    public void clickLoginButton() {
+    public void clickOnLoginButton() {
+        System.out.println("Click on Login button");
         driver.findElement(By.xpath(loginButtonXpath)).click();
     }
 
 
     public String getErrorLoginMessage() {
+        System.out.println("Get error login message");
         return driver.findElement(By.xpath(errorLoginMessageXpath)).getText();
     }
 }
