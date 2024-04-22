@@ -7,18 +7,17 @@ import java.util.Arrays;
 
 @Getter
 public enum HeaderMenuPageTitle {
-    BOOKS("BOOKS", "Books", "https://demowebshop.tricentis.com/books"),
-    COMPUTERS("COMPUTERS", "Computers", "https://demowebshop.tricentis.com/computers"),
-    ELECTRONICS("ELECTRONICS", "Electronics", "https://demowebshop.tricentis.com/electronics"),
-    APPAREL_AND_SHOES("APPAREL&SHOES", "Apparel & Shoes", "https://demowebshop.tricentis.com/apparel-shoes"),
-    DIGITAL_DOWNLOADS("DIGITAL DOWNLOADS", "Digital downloads", "https://demowebshop.tricentis.com/digital-downloads"),
-    JEWELRY("JEWELRY", "Jewelry", "https://demowebshop.tricentis.com/jewelry"),
-    GIFT_CARDS("GIFT CARDS", "Gift Cards", "https://demowebshop.tricentis.com/gift-cards");
+    BOOKS("BOOKS", "Books", "/books"),
+    COMPUTERS("COMPUTERS", "Computers", "/computers"),
+    ELECTRONICS("ELECTRONICS", "Electronics", "/electronics"),
+    APPAREL_AND_SHOES("APPAREL&SHOES", "Apparel & Shoes", "/apparel-shoes"),
+    DIGITAL_DOWNLOADS("DIGITAL DOWNLOADS", "Digital downloads", "/digital-downloads"),
+    JEWELRY("JEWELRY", "Jewelry", "/jewelry"),
+    GIFT_CARDS("GIFT CARDS", "Gift Cards", "/gift-cards");
 
     private String itemUIName;
     private String itemTagTextName;
     private String pageUrl;
-
 
     HeaderMenuPageTitle(String itemUIName, String itemTagTextName, String pageUrl) {
         this.itemTagTextName = itemTagTextName;

@@ -6,6 +6,7 @@ import ui.BaseTest;
 import ui.enums.HeaderMenuPageTitle;
 import ui.pages.SideMenu;
 import ui.pages.header.MainMenu;
+import ui.utils.ConfigReader;
 
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +28,8 @@ public class HeaderMenuPageIsOpenedTest extends BaseTest {
             String activeSidebarItemText = sideMenu.getActiveSidebarItemText();
             softAssert.assertEquals(activeSidebarItemText, HeaderMenuPageTitle.getTagNameByTextItem(menuItem).getItemTagTextName(),
                     String.format("Active sidebar element {%s} is not correct%n", activeSidebarItemText));
-            String expectedPageUrl = HeaderMenuPageTitle.getTagNameByTextItem(menuItem).getPageUrl();
+            ConfigReader configReader = ConfigReader.getInstance();
+            String expectedPageUrl = configReader.getBaseUrl() + HeaderMenuPageTitle.getTagNameByTextItem(menuItem).getPageUrl();
             System.out.printf("Actual url is - %s %n", driver.getCurrentUrl());
             softAssert.assertEquals(driver.getCurrentUrl(), expectedPageUrl, String.format("Actual url {%s} does not rely on expected url",driver.getCurrentUrl()));
         }
