@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class BooksPage extends BasePage {
     private final String pageTitleXpath = "//div[@class = 'page-title']";
 
+
     public BooksPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -14,4 +15,7 @@ public class BooksPage extends BasePage {
         System.out.printf("Get Books page title text%n");
         return driver.findElement(By.xpath(pageTitleXpath)).getText();
     }
+
+
+
 }

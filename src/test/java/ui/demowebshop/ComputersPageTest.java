@@ -4,7 +4,7 @@ import lombok.SneakyThrows;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import ui.BaseTest;
-import ui.enums.HeaderMenuPageTitle;
+import ui.enums.HeaderMenuItems;
 import ui.pages.ComputersPage;
 import ui.pages.header.MainMenu;
 
@@ -15,8 +15,8 @@ public class ComputersPageTest extends BaseTest {
     public void verifyPageTitleTest() {
         MainMenu mainMenu = new MainMenu(driver);
         ComputersPage computersPage = mainMenu.clickOnMenuItemByName("computers", ComputersPage.class);
-        Assert.assertEquals(computersPage.getPageTitleText(), HeaderMenuPageTitle.COMPUTERS.getItemTagTextName(),
-                String.format("Title of the {%s} page is not correct", HeaderMenuPageTitle.COMPUTERS.getItemTagTextName()));
+        Assert.assertEquals(computersPage.getPageTitleText(), HeaderMenuItems.COMPUTERS.getItemTagTextName(),
+                String.format("Title of the {%s} page is not correct", HeaderMenuItems.COMPUTERS.getItemTagTextName()));
 
     }
 }

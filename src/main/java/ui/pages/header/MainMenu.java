@@ -4,7 +4,7 @@ import lombok.SneakyThrows;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import ui.enums.HeaderMenuPageTitle;
+import ui.enums.HeaderMenuItems;
 import ui.pages.BasePage;
 
 import java.lang.reflect.Constructor;
@@ -30,7 +30,7 @@ public class MainMenu extends BasePage {
 
     public void clickOnMenuItemByName(String name) {
         System.out.printf("Click on Header item by {%s} %n", name);
-        driver.findElement(By.xpath(String.format(templateItemButtonByTagTextXpath, HeaderMenuPageTitle.getTagNameByTextItem(name).getItemTagTextName()))).click();
+        driver.findElement(By.xpath(String.format(templateItemButtonByTagTextXpath, HeaderMenuItems.getTagNameByTextItem(name).getItemTagTextName()))).click();
     }
 
     public List<String> getAllElementsFromMenuHeader() {

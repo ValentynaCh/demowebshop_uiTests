@@ -3,13 +3,14 @@ package ui.enums;
 
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 @Getter
-public enum HeaderMenuPageTitle {
+public enum HeaderMenuItems {
     BOOKS("BOOKS", "Books", "/books"),
-    COMPUTERS("COMPUTERS", "Computers", "/computers"),
-    ELECTRONICS("ELECTRONICS", "Electronics", "/electronics"),
+    COMPUTERS("COMPUTERS", "Computers", "/computers", "Desktops", "Notebooks", "Accessories"),
+    ELECTRONICS("ELECTRONICS", "Electronics", "/electronics", "Camera, photo", "Cell phones"),
     APPAREL_AND_SHOES("APPAREL&SHOES", "Apparel & Shoes", "/apparel-shoes"),
     DIGITAL_DOWNLOADS("DIGITAL DOWNLOADS", "Digital downloads", "/digital-downloads"),
     JEWELRY("JEWELRY", "Jewelry", "/jewelry"),
@@ -18,15 +19,18 @@ public enum HeaderMenuPageTitle {
     private String itemUIName;
     private String itemTagTextName;
     private String pageUrl;
+    private final ArrayList<String> subcategories;
 
-    HeaderMenuPageTitle(String itemUIName, String itemTagTextName, String pageUrl) {
+
+    HeaderMenuItems(String itemUIName, String itemTagTextName, String pageUrl, String... subcategories) {
         this.itemTagTextName = itemTagTextName;
         this.itemUIName = itemUIName;
         this.pageUrl = pageUrl;
+        this.subcategories = new ArrayList<>(Arrays.asList(subcategories));
     }
 
-    public static HeaderMenuPageTitle getTagNameByTextItem(String tagTextName) {
-        return Arrays.stream(HeaderMenuPageTitle.values())
+    public static HeaderMenuItems getTagNameByTextItem(String tagTextName) {
+        return Arrays.stream(HeaderMenuItems.values())
                 .filter(value -> value.itemTagTextName.equalsIgnoreCase(tagTextName))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException("No such enum with provided tagTextName"));
