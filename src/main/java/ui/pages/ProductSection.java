@@ -63,8 +63,10 @@ public class ProductSection extends BasePage {
     public boolean isProductsSortedByNameZToA(List<String> actualSortedList) {
         System.out.printf("Actual list is - %s%n", actualSortedList);
         List<String> expectedSortedZtoAList = new ArrayList<>(actualSortedList);
-        Collections.sort(expectedSortedZtoAList);
+
+        Collections.sort(expectedSortedZtoAList, Collections.reverseOrder());
         System.out.printf("Sorted list by Name: Z to A list is - %s%n", expectedSortedZtoAList);
         return actualSortedList.equals(expectedSortedZtoAList);
     }
+
 }
