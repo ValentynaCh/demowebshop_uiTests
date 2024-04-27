@@ -1,9 +1,11 @@
 package ui.pages;
 
+import net.bytebuddy.build.HashCodeAndEqualsPlugin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ui.enums.SortByItems;
+import ui.utils.SortedListComparator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -44,14 +46,6 @@ public class ProductSection extends BasePage {
                 SortByItems.NAME_A_TO_Z.getItemTagTextName()))).click();
     }
 
-    public boolean isProductsSortedByNameAToZ(List<String> actualSortedList) {
-        System.out.printf("Actual list is - %s%n", actualSortedList);
-        List<String> expectedSortedAtoZList = new ArrayList<>(actualSortedList);
-        Collections.sort(expectedSortedAtoZList);
-        System.out.printf("Sorted list by Name: A to Z list is - %s%n", expectedSortedAtoZList);
-        return actualSortedList.equals(expectedSortedAtoZList);
-    }
-
     public void selectNameZToAInSortByDropDown() {
         System.out.println("Click the Sort By dropdown list");
         driver.findElement(By.xpath(sortByDropDownXpath)).click();
@@ -60,13 +54,11 @@ public class ProductSection extends BasePage {
                 SortByItems.NAME_Z_TO_A.getItemTagTextName()))).click();
     }
 
-    public boolean isProductsSortedByNameZToA(List<String> actualSortedList) {
-        System.out.printf("Actual list is - %s%n", actualSortedList);
-        List<String> expectedSortedZtoAList = new ArrayList<>(actualSortedList);
-
-        Collections.sort(expectedSortedZtoAList, Collections.reverseOrder());
-        System.out.printf("Sorted list by Name: Z to A list is - %s%n", expectedSortedZtoAList);
-        return actualSortedList.equals(expectedSortedZtoAList);
+    public boolean isProductsListSorted(List<String> actualSortedList, SortByItems order){
+        System.out.printf("Check whether the list is sorted properly by %s%n", order);
+        SortedListComparator comparator = new SortedListComparator(order);
+        List<String> listToBeSorted = new ArrayList<>(actualSortedList);
+        return comparator.compare(actualSortedList, listToBeSorted) == 0;
     }
 
 }
