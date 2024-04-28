@@ -29,5 +29,5 @@ public class SortByFeatureTest extends BaseTest {
         softAssert.assertAll();
 
     }
-    
+
 }
