@@ -3,7 +3,6 @@ package ui.demowebshop;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import ui.BaseTest;
-import ui.enums.SortByItems;
 import ui.pages.ProductSection;
 import ui.pages.SideMenu;
 
@@ -20,14 +19,15 @@ public class SortByFeatureTest extends BaseTest {
                 "The Sort by label is not correct");
 
         productSection.selectNameAToZInSortByDropDown();
-        softAssert.assertTrue(productSection.isProductsListSorted(productSection.getAllProductsFromCategory(),
-                SortByItems.NAME_A_TO_Z));
+        softAssert.assertTrue(productSection.isProductsListSortedByASC(productSection.getAllProductsFromCategory()),
+                "Products are not sorted properly in ascending order");
 
         productSection.selectNameZToAInSortByDropDown();
-        softAssert.assertTrue(productSection.isProductsListSorted(productSection.getAllProductsFromCategory(),
-                SortByItems.NAME_Z_TO_A));
+        softAssert.assertTrue(productSection.isProductsListSortedByDESC(productSection.getAllProductsFromCategory()),
+                "Products are not sorted properly in descending order");
 
         softAssert.assertAll();
 
     }
+    
 }

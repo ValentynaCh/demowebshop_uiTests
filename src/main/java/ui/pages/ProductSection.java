@@ -1,6 +1,5 @@
 package ui.pages;
 
-import net.bytebuddy.build.HashCodeAndEqualsPlugin;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -8,7 +7,6 @@ import ui.enums.SortByItems;
 import ui.utils.SortedListComparator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ProductSection extends BasePage {
@@ -54,11 +52,31 @@ public class ProductSection extends BasePage {
                 SortByItems.NAME_Z_TO_A.getItemTagTextName()))).click();
     }
 
-    public boolean isProductsListSorted(List<String> actualSortedList, SortByItems order){
-        System.out.printf("Check whether the list is sorted properly by %s%n", order);
-        SortedListComparator comparator = new SortedListComparator(order);
-        List<String> listToBeSorted = new ArrayList<>(actualSortedList);
-        return comparator.compare(actualSortedList, listToBeSorted) == 0;
+    public boolean isProductsListSortedByASC(List<String> actualSortedList) {
+        System.out.printf("Check whether the list is sorted properly by %s%n",
+                SortedListComparator.SortOrder.ASCENDING);
+
+        SortedListComparator ascendingComparator = new SortedListComparator(SortedListComparator.SortOrder.ASCENDING);
+        System.out.printf("Here is a sorted list by website - %s%n", actualSortedList);
+
+        List<String> sortedListCopy = new ArrayList<>(actualSortedList);
+        sortedListCopy.sort(ascendingComparator);
+        System.out.printf("Here is a ASC sorted list by comparator - %s%n", actualSortedList);
+        return actualSortedList.equals(sortedListCopy);
     }
+
+    public boolean isProductsListSortedByDESC(List<String> actualSortedList) {
+        System.out.printf("Check whether the list is sorted properly by %s%n",
+                SortedListComparator.SortOrder.DESCENDING);
+
+        SortedListComparator descendingComparator = new SortedListComparator(SortedListComparator.SortOrder.DESCENDING);
+        System.out.printf("Here is a sorted list by website - %s%n", actualSortedList);
+
+        List<String> sortedListCopy = new ArrayList<>(actualSortedList);
+        sortedListCopy.sort(descendingComparator);
+        System.out.printf("Here is a DESC sorted list by comparator - %s%n", actualSortedList);
+        return actualSortedList.equals(sortedListCopy);
+    }
+
 
 }
