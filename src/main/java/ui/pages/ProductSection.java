@@ -4,9 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ui.enums.SortByItems;
+import ui.utils.SortedListComparator;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class ProductSection extends BasePage {
@@ -44,14 +44,6 @@ public class ProductSection extends BasePage {
                 SortByItems.NAME_A_TO_Z.getItemTagTextName()))).click();
     }
 
-    public boolean isProductsSortedByNameAToZ(List<String> actualSortedList) {
-        System.out.printf("Actual list is - %s%n", actualSortedList);
-        List<String> expectedSortedAtoZList = new ArrayList<>(actualSortedList);
-        Collections.sort(expectedSortedAtoZList);
-        System.out.printf("Sorted list by Name: A to Z list is - %s%n", expectedSortedAtoZList);
-        return actualSortedList.equals(expectedSortedAtoZList);
-    }
-
     public void selectNameZToAInSortByDropDown() {
         System.out.println("Click the Sort By dropdown list");
         driver.findElement(By.xpath(sortByDropDownXpath)).click();
@@ -60,11 +52,31 @@ public class ProductSection extends BasePage {
                 SortByItems.NAME_Z_TO_A.getItemTagTextName()))).click();
     }
 
-    public boolean isProductsSortedByNameZToA(List<String> actualSortedList) {
-        System.out.printf("Actual list is - %s%n", actualSortedList);
-        List<String> expectedSortedZtoAList = new ArrayList<>(actualSortedList);
-        Collections.sort(expectedSortedZtoAList);
-        System.out.printf("Sorted list by Name: Z to A list is - %s%n", expectedSortedZtoAList);
-        return actualSortedList.equals(expectedSortedZtoAList);
+    public boolean isProductsListSortedByASC(List<String> actualSortedList) {
+        System.out.printf("Check whether the list is sorted properly by %s%n",
+                SortedListComparator.SortOrder.ASCENDING);
+
+        SortedListComparator ascendingComparator = new SortedListComparator(SortedListComparator.SortOrder.ASCENDING);
+        System.out.printf("Here is a sorted list by website - %s%n", actualSortedList);
+
+        List<String> sortedListCopy = new ArrayList<>(actualSortedList);
+        sortedListCopy.sort(ascendingComparator);
+        System.out.printf("Here is a ASC sorted list by comparator - %s%n", actualSortedList);
+        return actualSortedList.equals(sortedListCopy);
     }
+
+    public boolean isProductsListSortedByDESC(List<String> actualSortedList) {
+        System.out.printf("Check whether the list is sorted properly by %s%n",
+                SortedListComparator.SortOrder.DESCENDING);
+
+        SortedListComparator descendingComparator = new SortedListComparator(SortedListComparator.SortOrder.DESCENDING);
+        System.out.printf("Here is a sorted list by website - %s%n", actualSortedList);
+
+        List<String> sortedListCopy = new ArrayList<>(actualSortedList);
+        sortedListCopy.sort(descendingComparator);
+        System.out.printf("Here is a DESC sorted list by comparator - %s%n", actualSortedList);
+        return actualSortedList.equals(sortedListCopy);
+    }
+
+
 }

@@ -69,7 +69,16 @@ public class SideMenu extends BasePage {
         String randomMenuItem = itemNamesList.get(randomIndex);
         System.out.printf("Click random sub category item - %s %n", randomMenuItem);
         driver.findElement(By.xpath(String.format(templateSubCategoryButtonByTagTextXpath, randomMenuItem))).click();
-        //HeaderMenuItems.getTagNameByTextItem(randomMenuItem).getSubcategories())))
     }
+
+    public void clickOnRandomSubCategoryItemIfExist(List<String> itemNamesList){
+        if (getAllSubElementsFromCategory().isEmpty()) {
+            System.out.println("There is no sub categories in category");
+        } else {
+            clickOnRandomSubCategoryItem(getAllSubElementsFromCategory());
+        }
+    }
+
+
 
 }
