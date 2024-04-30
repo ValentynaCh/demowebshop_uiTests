@@ -1,9 +1,12 @@
 package ui.pages;
 
+import ch.qos.logback.classic.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.LoggerFactory;
 
 public class RegisterPage extends BasePage {
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(RegisterPage.class);
 
     private final String pageTitleXpath = "//div[@class = 'page-title']";
     private final String personalDetailsFormTitleXpath = "//div[@class = 'fieldset'][1]//div[@class = 'title']";
@@ -30,95 +33,95 @@ public class RegisterPage extends BasePage {
 
 
     public String getPageTitleText() {
-        System.out.println("Get Register page title text");
+        logger.info("Get Register page title text");
         return driver.findElement(By.xpath(pageTitleXpath)).getText();
     }
 
     public String getPersonalDetailsFormTitle() {
-        System.out.println("Get Personal Details form title");
+        logger.info("Get Personal Details form title");
         return driver.findElement(By.xpath(personalDetailsFormTitleXpath)).getText();
     }
 
     public String getGenderLabelText() {
-        System.out.println("Get Gender label text");
+        logger.info("Get Gender label text");
         return driver.findElement(By.xpath(genderLabelXpath)).getText();
     }
 
     public String getMaleRadiobuttonLabelText() {
-        System.out.println("Get Male label text");
+        logger.info("Get Male label text");
         return driver.findElement(By.xpath(maleGenderLabelXpath)).getText();
 
     }
 
     public String getFemaleRadiobuttonLabelText() {
-        System.out.println("Get Female label text");
+        logger.info("Get Female label text");
         return driver.findElement(By.xpath(femaleGenderLabelXpath)).getText();
 
     }
 
     public boolean isMaleRadiobuttonSelected() {
-        System.out.println("Check if Male radiobutton is selected");
+        logger.info("Check if Male radiobutton is selected");
         return driver.findElement(By.xpath(maleGenderRadiobuttonXpath)).isSelected();
     }
 
     public boolean isFemaleRadiobuttonSelected() {
-        System.out.println("Check if Female radiobutton is selected");
+        logger.info("Check if Female radiobutton is selected");
         return driver.findElement(By.xpath(femaleGenderRadiobuttonXpath)).isSelected();
     }
 
 
     public String getFirstNameLabelText() {
-        System.out.println("Get First Name label text");
+        logger.info("Get First Name label text");
         return driver.findElement(By.xpath(firstNameLabelXpath)).getText();
     }
 
     public boolean isFirstNameFieldEmpty() {
-        System.out.println("Check if First name field is empty");
+        logger.info("Check if First name field is empty");
         return driver.findElement(By.xpath(firstNameFieldXpath)).getText().isEmpty();
     }
 
     public String getLastNameLabelText() {
-        System.out.println("Get Last Name label text");
+        logger.info("Get Last Name label text");
         return driver.findElement(By.xpath(lastNameLabelXpath)).getText();
     }
 
     public boolean isLastNameFieldEmpty() {
-        System.out.println("Check if Last name field is empty");
+        logger.info("Check if Last name field is empty");
         return driver.findElement(By.xpath(lastNameFieldXpath)).getText().isEmpty();
     }
 
     public String getEmailLabelText() {
-        System.out.println("Get Email label text");
+        logger.info("Get Email label text");
         return driver.findElement(By.xpath(emailLabelXpath)).getText();
     }
 
     public boolean isEmailFieldEmpty() {
-        System.out.println("Check if Email field is empty");
+        logger.info("Check if Email field is empty");
         return driver.findElement(By.xpath(emailFieldXpath)).getText().isEmpty();
     }
 
     public String getYourPasswordFormTitle() {
-        System.out.println("Get Your Password form title");
+        logger.info("Get Your Password form title");
         return driver.findElement(By.xpath(passwordFormTitleXpath)).getText();
     }
 
     public String getPasswordLabelText() {
-        System.out.println("Get Password label text");
+        logger.info("Get Password label text");
         return driver.findElement(By.xpath(passwordLabelXpath)).getText();
     }
 
     public boolean isPasswordFieldEmpty() {
-        System.out.println("Check if Password field is empty");
+        logger.info("Check if Password field is empty");
         return driver.findElement(By.xpath(passwordFieldXpath)).getText().isEmpty();
     }
 
     public String getConfirmPasswordLabelText() {
-        System.out.println("Get Confirm password label text");
+        logger.info("Get Confirm password label text");
         return driver.findElement(By.xpath(confirmPasswordLabelXpath)).getText();
     }
 
     public boolean isConfirmPasswordFieldEmpty() {
-        System.out.println("Check if Password field is empty");
+        logger.info("Check if Password field is empty");
         return driver.findElement(By.xpath(confirmPasswordFieldXpath)).getText().isEmpty();
     }
 }

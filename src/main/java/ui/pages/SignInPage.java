@@ -1,9 +1,12 @@
 package ui.pages;
 
+import ch.qos.logback.classic.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.LoggerFactory;
 
 public class SignInPage extends BasePage {
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(SignInPage.class);
     private final String emailFieldXpath = "//input[@id = 'Email']";
     private final String passwordFieldXpath = "//input[@id = 'Password']";
     private final String loginButtonXpath = "//div[@class = 'buttons'] //input[@type = 'submit']";
@@ -15,23 +18,22 @@ public class SignInPage extends BasePage {
 
 
     public void setEmail(String email) {
-        System.out.println(String.format("Set %s email", email));
+        logger.info("Set {} email", email);
         driver.findElement(By.xpath(emailFieldXpath)).sendKeys(email);
     }
 
     public void setPassword(String password) {
-        System.out.println(String.format("Set %s password", password));
+        logger.info("Set {} password", password);
         driver.findElement(By.xpath(passwordFieldXpath)).sendKeys(password);
     }
 
     public void clickOnLoginButton() {
-        System.out.println("Click on Login button");
+        logger.info("Click on Login button");
         driver.findElement(By.xpath(loginButtonXpath)).click();
     }
 
-
     public String getErrorLoginMessage() {
-        System.out.println("Get error login message");
+        logger.info("Get error login message");
         return driver.findElement(By.xpath(errorLoginMessageXpath)).getText();
     }
 }

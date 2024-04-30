@@ -1,9 +1,12 @@
 package ui.pages;
 
+import ch.qos.logback.classic.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.LoggerFactory;
 
 public class ComputersPage extends BasePage {
+    private static final Logger logger = (Logger) LoggerFactory.getLogger(ComputersPage.class);
     private final String pageTitleXpath = "//div[@class = 'page-title']";
 
     public ComputersPage(WebDriver webDriver) {
@@ -11,7 +14,7 @@ public class ComputersPage extends BasePage {
     }
 
     public String getPageTitleText() {
-        System.out.println("Get Computers page title text");
+        logger.info("Get Computers page title text");
         return driver.findElement(By.xpath(pageTitleXpath)).getText();
     }
 }
