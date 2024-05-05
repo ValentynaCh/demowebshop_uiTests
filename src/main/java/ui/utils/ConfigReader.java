@@ -1,5 +1,9 @@
 package ui.utils;
 
+import ch.qos.logback.classic.Logger;
+import org.slf4j.LoggerFactory;
+import ui.pages.SideMenu;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -12,6 +16,7 @@ public class ConfigReader {
     public static ConfigReader configReader;
     private static final String FILE_NAME = "app.properties";
     private static final Path RESOURCES_PATH = Paths.get("src", "main", "resources");
+    private static final ch.qos.logback.classic.Logger logger = (Logger) LoggerFactory.getLogger(ConfigReader.class);
 
     private ConfigReader() {
         try (BufferedReader reader = Files.newBufferedReader(RESOURCES_PATH.resolve(FILE_NAME))) {
@@ -19,7 +24,7 @@ public class ConfigReader {
             properties.load(reader);
         } catch (IOException e) {
             e.printStackTrace();
-            throw new RuntimeException(String.format("error while reading a %s file.", FILE_NAME));
+            logger.error("error while reading a {} file", FILE_NAME);
         }
     }
     public static ConfigReader getInstance() {
