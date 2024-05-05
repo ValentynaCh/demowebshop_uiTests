@@ -9,7 +9,7 @@ import ui.pages.header.MainMenu;
 
 public class RegisterTest extends BaseTest {
     @SneakyThrows
-    @Test(description = "This test verifies navigation to the Register page after clicking the Register button ")
+    @Test(description = "This test verifies navigation to the Register page after clicking the Register button", groups = {"regression"})
     public void verifyRegisterPageIsOpened() {
         MainMenu mainMenu = new MainMenu(driver);
         RegisterPage registerPage = mainMenu.clickOnMenuItemByName("register", RegisterPage.class);

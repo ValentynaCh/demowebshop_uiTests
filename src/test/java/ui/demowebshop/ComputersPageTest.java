@@ -11,7 +11,7 @@ import ui.pages.header.MainMenu;
 public class ComputersPageTest extends BaseTest {
 
     @SneakyThrows
-    @Test(description = "This test verifies page title")
+    @Test(description = "This test verifies page title", groups = {"regression"})
     public void verifyPageTitleTest() {
         MainMenu mainMenu = new MainMenu(driver);
         ComputersPage computersPage = mainMenu.clickOnMenuItemByName("computers", ComputersPage.class);

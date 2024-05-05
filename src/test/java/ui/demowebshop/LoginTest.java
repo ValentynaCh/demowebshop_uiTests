@@ -9,7 +9,7 @@ import ui.pages.header.TopRightMenu;
 
 public class LoginTest extends BaseTest {
     @SneakyThrows
-    @Test(description = "This test verifies message of unsuccessful login")
+    @Test(description = "This test verifies message of unsuccessful login", groups = {"regression"})
     public void verifyMessageOfIncorrectCredentials() {
         TopRightMenu topRightMenu = new TopRightMenu(driver);
         SignInPage signInPage = topRightMenu.clickOnTopMenuItemByName("login", SignInPage.class);

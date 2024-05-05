@@ -7,7 +7,7 @@ import ui.pages.ProductSection;
 import ui.pages.SideMenu;
 
 public class SortByFeatureTest extends BaseTest {
-    @Test(description = "This test verifies the Sort by feature - Name: A to Z, Name: Z to A")
+    @Test(description = "This test verifies the Sort by feature - Name: A to Z, Name: Z to A", groups = "regression")
     public void verifySortByTest() {
         SideMenu sideMenu = new SideMenu(driver);
         sideMenu.clickOnRandomMenuItem(sideMenu.getAllElementsFromSideMenu());
@@ -28,6 +28,10 @@ public class SortByFeatureTest extends BaseTest {
 
         softAssert.assertAll();
 
+    }
+    @Test
+    public void verifyPrintTest(){
+        System.out.println("hello");
     }
 
 }
