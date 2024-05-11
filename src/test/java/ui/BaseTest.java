@@ -1,29 +1,20 @@
 package ui;
 
 import ch.qos.logback.classic.Logger;
-import lombok.extern.java.Log;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.TestNG;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Listeners;
 import ui.core.DriverManager;
 import ui.listeners.LogListener;
-import ui.pages.SideMenu;
 import ui.utils.ConfigReader;
-import ui.utils.LoggerUtil;
 
-@Listeners (LogListener.class)
+import java.util.concurrent.TimeUnit;
+
 public class BaseTest {
     protected static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
-    public static WebDriver driver;
     private static final Logger logger = (Logger) LoggerFactory.getLogger(BaseTest.class);
 
     @AfterSuite(alwaysRun = true)
@@ -41,14 +32,15 @@ public class BaseTest {
     @BeforeClass(alwaysRun = true)
     public void setUp() {
         ConfigReader configReader = ConfigReader.getInstance();
-        driver = new DriverManager().createDriver(configReader.getBrowserName());
+        WebDriver driver = new DriverManager().createDriver(configReader.getBrowserName());
+        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         LogListener.setDriver(driver);
         driver.get(configReader.getBaseUrl());
         driverThreadLocal.set(driver);
     }
 
     @AfterClass(alwaysRun = true)
-    public void tearDown(ITestContext context) {
+    public void tearDown() {
         driverThreadLocal.get().quit();
         driverThreadLocal.remove();
     }

@@ -16,14 +16,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class LogListener implements ITestListener {
-    //private static final Logger logger = (Logger) LoggerFactory.getLogger(LogListener.class);
     private static WebDriver driver;
 
     public static void setDriver(WebDriver driver) {
         LogListener.driver = driver;
     }
 
-    private static final Path screenshotsPath = Paths.get("src", "main", "resources", "testsScreenshots");
+    private static final Path screenshotsPath = Paths.get("testResults/screenshots");
 
 
     public String getTestName(ITestResult result) {
@@ -56,7 +55,7 @@ public class LogListener implements ITestListener {
         takeScreenshot(result);
     }
 
-    public void takeScreenshot(ITestResult result) {
+    private void takeScreenshot(ITestResult result) {
         Logger logger = LoggerFactory.getLogger(result.getInstance().getClass());
         String testName = getTestName(result);
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

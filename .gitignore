@@ -2,7 +2,11 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-src/main/resources/testsLogs
+logs/
+testResults/
+.allure/
+allure-results/
+src/main/resources/testsLogs/
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
@@ -39,4 +43,3 @@ build/
 ### Mac OS ###
 .DS_Store
 /testng.xml
-src/main/resources/testsLogs

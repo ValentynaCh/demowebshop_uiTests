@@ -1,9 +1,9 @@
 package ui.demowebshop;
 
+import jdk.jfr.Description;
 import lombok.SneakyThrows;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.BaseTest;
 import ui.enums.HeaderMenuItems;
@@ -13,9 +13,10 @@ import ui.pages.header.MainMenu;
 public class BooksPageTest extends BaseTest {
 
     @SneakyThrows
-    @Test(description = "This test verifies Books page title", groups = {"regression"})
+    @Test(groups = {"regression"})
+    @Description("This test verifies Books page title")
     public void verifyPageTitleTest() {
-        MainMenu mainMenu = new MainMenu(driver);
+        MainMenu mainMenu = new MainMenu(driverThreadLocal.get());
         BooksPage booksPage = mainMenu.clickOnMenuItemByName("books", BooksPage.class);
         String actualTitle = booksPage.getPageTitleText();
         String expectedTitle = HeaderMenuItems.BOOKS.getItemTagTextName();

@@ -1,5 +1,6 @@
 package ui.demowebshop;
 
+import jdk.jfr.Description;
 import lombok.SneakyThrows;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -9,9 +10,10 @@ import ui.pages.header.MainMenu;
 
 public class RegisterTest extends BaseTest {
     @SneakyThrows
-    @Test(description = "This test verifies navigation to the Register page after clicking the Register button", groups = {"regression"})
+    @Test(groups = {"regression"})
+    @Description("This test verifies navigation to the Register page after clicking the Register button")
     public void verifyRegisterPageIsOpened() {
-        MainMenu mainMenu = new MainMenu(driver);
+        MainMenu mainMenu = new MainMenu(driverThreadLocal.get());
         RegisterPage registerPage = mainMenu.clickOnMenuItemByName("register", RegisterPage.class);
 
         SoftAssert softAssert = new SoftAssert();

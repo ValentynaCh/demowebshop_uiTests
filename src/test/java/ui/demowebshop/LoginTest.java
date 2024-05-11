@@ -1,5 +1,6 @@
 package ui.demowebshop;
 
+import jdk.jfr.Description;
 import lombok.SneakyThrows;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,9 +10,10 @@ import ui.pages.header.TopRightMenu;
 
 public class LoginTest extends BaseTest {
     @SneakyThrows
-    @Test(description = "This test verifies message of unsuccessful login", groups = {"regression"})
+    @Test(groups = {"regression"})
+    @Description("This test verifies message of unsuccessful login")
     public void verifyMessageOfIncorrectCredentials() {
-        TopRightMenu topRightMenu = new TopRightMenu(driver);
+        TopRightMenu topRightMenu = new TopRightMenu(driverThreadLocal.get());
         SignInPage signInPage = topRightMenu.clickOnTopMenuItemByName("login", SignInPage.class);
         signInPage.setEmail("some_email@gmail.com");
         signInPage.setPassword("123456");
