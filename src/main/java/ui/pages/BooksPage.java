@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 public class BooksPage extends BasePage {
     private static final Logger logger = (Logger) LoggerFactory.getLogger(BooksPage.class);
     private final String pageTitleXpath = "//div[@class = 'page-title']";
+
     public BooksPage(WebDriver webDriver) {
         super(webDriver);
     }

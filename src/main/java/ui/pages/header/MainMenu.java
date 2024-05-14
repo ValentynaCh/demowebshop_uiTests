@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 import org.slf4j.LoggerFactory;
 import ui.enums.HeaderMenuItems;
 import ui.pages.BasePage;
-import ui.pages.BooksPage;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;

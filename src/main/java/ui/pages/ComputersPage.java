@@ -14,6 +14,7 @@ public class ComputersPage extends BasePage {
     }
 
     public String getPageTitleText() {
+        logger.info("Test are running from " + Thread.currentThread().getName());
         logger.info("Get Computers page title text");
         return driver.findElement(By.xpath(pageTitleXpath)).getText();
     }

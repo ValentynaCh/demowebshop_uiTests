@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import ui.pages.BasePage;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 
 public class TopRightMenu extends BasePage {
     private static final Logger logger = (Logger) LoggerFactory.getLogger(TopRightMenu.class);

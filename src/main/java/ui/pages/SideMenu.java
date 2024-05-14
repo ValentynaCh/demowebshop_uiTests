@@ -4,9 +4,12 @@ import ch.qos.logback.classic.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.slf4j.LoggerFactory;
 import ui.enums.HeaderMenuItems;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -50,8 +53,11 @@ public class SideMenu extends BasePage {
         int randomIndex = random.nextInt(itemNamesList.size());
         String randomMenuItem = itemNamesList.get(randomIndex);
         logger.info("Click random menu item - {}", randomMenuItem);
-        driver.findElement(By.xpath(String.format(templateItemButtonByTagTextXpath,
-                HeaderMenuItems.getTagNameByTextItem(randomMenuItem).getItemTagTextName()))).click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        WebElement menuItem = wait.until(ExpectedConditions.presenceOfElementLocated(
+                By.xpath(String.format(templateItemButtonByTagTextXpath,
+                        HeaderMenuItems.getTagNameByTextItem(randomMenuItem).getItemTagTextName()))));
+        menuItem.click();
     }
 
     public List<String> getAllSubElementsFromCategory() {
@@ -76,6 +82,7 @@ public class SideMenu extends BasePage {
     }
 
     public void clickOnRandomSubCategoryItemIfExist(List<String> itemNamesList){
+
         if (getAllSubElementsFromCategory().isEmpty()) {
             logger.info("There is no sub categories in category");
         } else {
